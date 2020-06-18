@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Tiny Towns</title>
+<link rel="stylesheet" href="Bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="CSS/Styles.css">
+<script src="JS/javascript.js"></script>
+</head>
+
+<body onload="MaterialesAlAzar()">
+	
+<div class="container">
+ <div class="row">
+	 <div class="col-md-12">
+		 <center>
+		<button type="button" onclick="habilitarTablero('M')" value="M" name="Madera" id="Madera" class="btn Material btn-info" disabled="true"><img src="IMG/Materiales/Madera.png" alt="Madera" title="Madera"/></button>
+		<button type="button" onclick="habilitarTablero('T')" value="T" name="Trigo" id="Trigo" class="btn Material btn-info" disabled="true"><img src="IMG/Materiales/Trigo.png" alt="Trigo" title="Trigo"/></button>
+		<button type="button" onclick="habilitarTablero('L')" value="L" name="Ladrillo" id="Ladrillo" class="btn Material btn-info" disabled="true"><img src="IMG/Materiales/Ladrillo.png" alt="Ladrillo" title="Ladrillo"/></button>
+		<button type="button" onclick="habilitarTablero('V')" value="V" name="Vidrio" id="Vidrio" class="btn Material btn-info" disabled="true"><img src="IMG/Materiales/Vidrio.png" alt="Vidrio" title="Vidrio"/></button>
+		<button type="button" onclick="habilitarTablero('P')" value="P" name="Piedra" id="Piedra" class="btn Material btn-info" disabled="true"><img src="IMG/Materiales/Piedra.png" alt="Piedra" title="Piedra"/></button>
+		</center>
+	 </div>
+ </div>
+<br>
+	<section class="main row">
+		<aside class="col-md-2 col-lg-2" align="center">
+	<!-- Button trigger modal -->
+		<button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">
+  		Formulario de Edificios
+		</button>
+			<br><br>
+			<div id="NuevoEdificio"></div>
+		</aside>
+		<article class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+			<center>
+		<table id="tablero" class="table table-bordered table-dark">
+			<tbody>
+				<tr>
+					<td><button onclick="turno(1,1)" id="1-1" class="btn btn-tablero" disabled="true" value=""></button></td>
+					<td><button onclick="turno(1,2)" id="1-2" class="btn btn-tablero" disabled="true" value=""></button></td>
+					<td><button onclick="turno(1,3)" id="1-3" class="btn btn-tablero" disabled="true" value=""></button></td>
+					<td><button onclick="turno(1,4)" id="1-4" class="btn btn-tablero" disabled="true" value=""></button></td>
+				</tr>
+				
+				<tr>
+					<td><button onclick="turno(2,1)" id="2-1" class="btn btn-tablero" disabled="true" value=""></button></td>
+					<td><button onclick="turno(2,2)" id="2-2" class="btn btn-tablero" disabled="true" value=""></button></td>
+					<td><button onclick="turno(2,3)" id="2-3" class="btn btn-tablero" disabled="true" value=""></button></td>
+					<td><button onclick="turno(2,4)" id="2-4" class="btn btn-tablero" disabled="true" value=""></button></td>
+				</tr>
+				
+				<tr>
+					<td><button onclick="turno(3,1)" id="3-1" class="btn btn-tablero" disabled="true" value=""></button></td>
+					<td><button onclick="turno(3,2)" id="3-2" class="btn btn-tablero" disabled="true" value=""></button></td>
+					<td><button onclick="turno(3,3)" id="3-3" class="btn btn-tablero" disabled="true" value=""></button></td>
+					<td><button onclick="turno(3,4)" id="3-4" class="btn btn-tablero" disabled="true" value=""></button></td>					
+				</tr>
+				
+				<tr>
+					<td><button onclick="turno(4,1)" id="4-1" class="btn btn-tablero" disabled="true" value=""></button></td>
+					<td><button onclick="turno(4,2)" id="4-2" class="btn btn-tablero" disabled="true" value=""></button></td>
+					<td><button onclick="turno(4,3)" id="4-3" class="btn btn-tablero" disabled="true" value=""></button></td>
+					<td><button onclick="turno(4,4)" id="4-4" class="btn btn-tablero" disabled="true" value=""></button></td>
+				</tr>
+			</tbody>
+		</table>
+			<div id="GameOver"></div>
+		</center>
+	</article>
+		
+		<aside class="col-md-2 col-lg-2" align="center">
+			<button class="btn btn-block btn-danger" disabled="true" id="NoConstruir" value="NoConstruir" onclick="NoConstruir()" >No construir nada</button><br>
+			<button class="btn btn-block btn-info" disabled="true" id="Casa" value="Casa" onclick="construirCasa()">Casa</button><br>
+			<button class="btn btn-block btn-info" disabled="true" id="Sastre" value="Sastre" onclick="construirSastre()">Sastre</button><br>
+			<button class="btn btn-block btn-info" disabled="true" id="Granja" value="Granja" onclick="construirGranja()">Granja</button><br>
+			<button class="btn btn-block btn-info" disabled="true" id="Capilla" value="Capilla" onclick="construirCapilla()">Capilla</button><br>
+			<button class="btn btn-block btn-info" disabled="true" id="Taberna" value="Taberna" onclick="construirTaberna()">Taberna</button><br>
+			<button class="btn btn-block btn-info" disabled="true" id="Mercado" value="Mercado" onclick="construirMercado()">Mercado</button><br>
+			<button class="btn btn-block btn-info" disabled="true" id="Cobertizo" value="Cobertizo" onclick="construirCobertizo()">Cobertizo</button><br>
+			<button class="btn btn-block btn-info" disabled="true" id="Catedral" value="Catedral" onclick="construirCatedral()">Catedral</button><br>
+		</aside>
+	</section>	
+</div>
+<!--Modal con carrusel -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Formulario de Edificios</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+<!--Carrusel de imagenes -->		  
+<div id="carouselIndicators" class="carousel slide" data-ride="carousel" >
+  <ol class="carousel-indicators">
+    <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselIndicators" data-slide-to="2"></li>
+	<li data-target="#carouselIndicators" data-slide-to="3"></li>
+	<li data-target="#carouselIndicators" data-slide-to="4"></li>
+    <li data-target="#carouselIndicators" data-slide-to="5"></li>
+	<li data-target="#carouselIndicators" data-slide-to="6"></li>
+	<li data-target="#carouselIndicators" data-slide-to="7"></li>
+  </ol>
+  <div class="carousel-inner">
+<div class="carousel-item active">
+  <img class="d-block w-100" src="IMG/Casa/casa.gif" alt="Casa">
+  <div class="carousel-caption d-none d-md-block">
+    <h5>Casa</h5>
+	<p>3 puntos si está alimentada (por una granja) y 0 sin alimentar.</p>
+  </div>
+</div>
+<div class="carousel-item">
+  <img class="d-block w-100" src="IMG/Cobertizo/cobertizo.gif" alt="Cobertizo">
+  <div class="carousel-caption d-none d-md-block">
+    <h5>Cobertizo</h5>
+	  <p>1 puntos, puede construirse en cualquier espacio vacío.</p>
+  </div>
+</div>
+<div class="carousel-item">
+  <img class="d-block w-100" src="IMG/Taberna/taberna.gif" alt="Taberna">
+  <div class="carousel-caption d-none d-md-block">
+    <h5>Taberna</h5>
+	<p>1Taberna = 2Puntos, 2T=5P, 3T=9P, 4T=14P, 5T=20P</p>
+  </div>
+</div>
+<div class="carousel-item">
+  <img class="d-block w-100" src="IMG/Catedral/catedral.gif" alt="Catedral">
+  <div class="carousel-caption d-none d-md-block">
+    <h5>Catedral</h5>
+	<p>2 Puntos, si está construida no serás penalizado por materiales sueltos al final.</p>
+  </div>
+</div>
+<div class="carousel-item">
+  <img class="d-block w-100" src="IMG/Capilla/Capilla.gif" alt="Capilla">
+  <div class="carousel-caption d-none d-md-block">
+    <h5>Capilla</h5>
+	<p>1 punto por cada casa alimentada.</p>
+  </div>
+</div>
+<div class="carousel-item">
+  <img class="d-block w-100" src="IMG/Granja/granja.gif" alt="Granja">
+  <div class="carousel-caption d-none d-md-block">
+    <h5>Granja</h5>
+	<p>0 puntos, 1 granja alimenta hasta 4 casas.</p>
+  </div>
+</div>
+<div class="carousel-item">
+  <img class="d-block w-100" src="IMG/Mercado/mercado.gif" alt="Mercado">
+  <div class="carousel-caption d-none d-md-block">
+    <h5>Mercado</h5>
+	<p>1 punto, funciona como comodín para cualquier edificio.</p>
+  </div>
+</div>
+<div class="carousel-item">
+  <img class="d-block w-100" src="IMG/Sastre/sastre.gif" alt="Sastre">
+  <div class="carousel-caption d-none d-md-block">
+    <h5>Sastre</h5>
+	<p>1 punto, +1 punto por cada sastre en las 4 casillas centrales.</p>
+  </div>
+</div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+	
+<!--Modal de puntuación final-->
+<div class="modal fade" id="puntuacionModal" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLongTitle">Puntuación Total</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">	  
+		  <h5>Casas:&nbsp;<input id="casaPuntos" value="" disabled="true"></h5>
+		  <h5>Sastres:&nbsp;<input id="sastrePuntos" value="" disabled="true"></h5>
+		  <h5>Capillas:&nbsp;<input id="capillaPuntos" value="" disabled="true"></h5>
+		  <h5>Tabernas:&nbsp;<input id="tabernaPuntos" value="" disabled="true"></h5>
+		  <h5>Mercado:&nbsp;<input id="mercadoPuntos" value="" disabled="true"></h5>
+		  <h5>Cobertizo:&nbsp;<input id="cobertizoPuntos" value="" disabled="true"> </h5>
+		  <h5>Catedral:&nbsp;<input id="catedralPuntos" value="" disabled="true"></h5>
+		  <h5>Penalización:&nbsp;<input id="puntosRestados" value="" disabled="true"></h5>
+		  <h5>Total:&nbsp;<input id="totalPuntos" value="" disabled="true"></h5>
+		  <center>
+		  <h5><div id="puntosMensaje"></div></h5>
+		  </center>
+	  </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>	
+	
+<script src="Jquery/jquery-3.5.1.min.js"></script>
+<script src="Bootstrap/bootstrap.min.js"></script>		
+</body>
+</html>
